@@ -1,7 +1,5 @@
 (function() {
-
   $(function() {
-    return alert("hello world");
+    return console.log("hello world!");
   });
-
 }).call(this);

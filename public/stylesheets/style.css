@@ -1,1 +1,114 @@
-body{}
+#instruction2{
+  position:fixed;
+  top:0;
+  opacity:1;
+  display:none;
+}
+
+#coverOverlay{
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color:#000;
+  opacity:0.95;
+  text-align:center;
+  padding-top:120px;
+  z-index:5;
+  display:none;
+}
+#coverOverlay h1{
+  color:#bbb;
+  font-size:60px;
+  font-family:'lobster';
+  line-height:140%;
+}
+
+.authButton{
+  display:none;
+  position:absolute;
+  top:20px;
+  right:20px;
+  cursor:pointer;
+  opacity:0.5;
+}
+.authButton:hover{
+  opacity:1;
+}
+#pageTitle{
+  margin-top:80px;
+  margin-bottom:30px;
+  font-size:81px;
+  line-height:100%;
+  font-family:'lobster';
+  text-align:center;
+}
+.stepMessage{
+  width:100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;  
+  border-top: 1px dotted #aaa;
+  font-family:'cabin';
+  display:block;
+  font-size: 45px;
+  line-height:100%;
+  padding-top: 50px;
+  text-align:center;
+  height:170px;
+  opacity:0.6;
+}
+#or{
+  font-family:'cabin';
+  font-size: 45px;
+  line-height:100%;
+  text-align:center;
+  margin-top: 50px;
+}
+#pickAlbum{
+  font-size:20px;
+  line-height:100%;
+}
+#albumStep{
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;  
+  text-align:center;
+}
+
+.albumImg{
+  width: 180px;
+  display:inline-block;
+  margin:10px;
+  cursor:pointer;
+  font-family:'cabin';
+  font-weight:bold;
+  opacity:0.4;
+}
+.albumImg:hover{
+  opacity:1;
+}
+.thumbnail{
+  margin-bottom:20px;
+}
+.thumbnail img{
+  height:150px;
+}
+.thumbnail p{
+  white-space: nowrap;
+  overflow:hidden;
+}
+.selectedAlbum{
+  opacity:1;
+  border-color:#08c;
+  color:#08c;
+}
+.selectedAlbum img{
+  opacity:1;
+}
+.selectedAlbum p{
+  opacity:1;
+}
+
+

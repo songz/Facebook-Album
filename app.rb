@@ -2,10 +2,11 @@ require 'rubygems'
 require 'sinatra'
 
 get '/' do
-  File.read(File.join('public', 'index.html'))
+  erb :main
 end
 
-get '/main' do
-  @name = "Song Zheng"
-  erb :main
+post '/sendImage' do
+  string_io = request.body
+  p data_bytes = string_io.read
+  return "success!"
 end
