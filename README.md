@@ -1,8 +1,15 @@
+=======
+Facebook-Album
+==============
+
+Drag and Drop Facebook Pictures into any of your Photo Albums
+
+
 to run:
 shotgun app.rb
 
 heroku:
-heroku create <appName> --stack cedar
+heroku create <appName>
 
 Bootstrap:
 	1) Bootstrap.min.css, Bootstrap.min.js
