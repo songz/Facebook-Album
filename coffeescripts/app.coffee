@@ -101,15 +101,26 @@ window.fbAsyncInit = ->
     cookie     : true
     xfbml      : true
 
-    FB.Event.subscribe 'auth.statusChange', (response) ->
-      if (response.status!="connected")
-        $('#fblogin').show()
-        $('#fblogout').hide()
-      else
-        window.fbAccessToken=response.authResponse.accessToken
-        FB.api '/me/albums', getAlbums
-        $('#fblogout').show()
-        $('#fblogin').hide()
+  FB.getLoginStatus (response) ->
+    if (response.status!="connected")
+      $('#fblogin').show()
+      $('#fblogout').hide()
+    else
+      window.fbAccessToken=response.authResponse.accessToken
+      FB.api '/me/albums', getAlbums
+      $('#fblogout').show()
+      $('#fblogin').hide()
+
+  FB.Event.subscribe 'auth.statusChange', (response) ->
+    console.log("status changes")
+    if (response.status!="connected")
+      $('#fblogin').show()
+      $('#fblogout').hide()
+    else
+      window.fbAccessToken=response.authResponse.accessToken
+      FB.api '/me/albums', getAlbums
+      $('#fblogout').show()
+      $('#fblogin').hide()
       
 temp = (d) -> 
           js = ""
