@@ -3,7 +3,7 @@ tmpStepMessage = $('#instruction2')
 
 $(window).scroll ->
   curtop = $(window).scrollTop()
-  if (curtop >= navTop) 
+  if (curtop >= navTop)
     tmpStepMessage.show()
     $('#instruction').css('opacity', 0)
   else
