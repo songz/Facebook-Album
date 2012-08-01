@@ -92,7 +92,7 @@ $('#fblogin').click ->
       $('#fblogin').hide()
     else
       alert("Please Allow")
-  , {scope: 'publish_stream'}
+  , {scope: 'publish_stream, user_photos, friends_photos'}
 
 window.fbAsyncInit = ->
   FB.init
