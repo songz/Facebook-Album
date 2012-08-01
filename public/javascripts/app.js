@@ -24,7 +24,7 @@
     evt.stopPropagation();
     evt.preventDefault();
     files = evt.dataTransfer.files;
-    url = "https://graph.facebook.com" + $('.selectAlbum').attr('id') + "/photos";
+    url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
     _results = [];
     for (_i = 0, _len = files.length; _i < _len; _i++) {
       file = files[_i];
@@ -141,7 +141,7 @@
         return alert("Please Allow");
       }
     }, {
-      scope: 'publish_stream'
+      scope: 'user_photos,friends_photos,publish_stream'
     });
   });
 

@@ -16,7 +16,7 @@ drop = (evt) ->
   evt.preventDefault()
   
   files = evt.dataTransfer.files
-  url = "https://graph.facebook.com"+$('.selectAlbum').attr('id')+"/photos";
+  url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
   for file in files
     formData = new FormData()
     formData.append('access_token', window.fbAccessToken)
@@ -39,9 +39,9 @@ dragEnter = (evt) ->
   numEnter += 1
 
 dragLeave = (evt) ->
-  evt.stopPropagation();
-  evt.preventDefault();
-  numEnter -= 1;
+  evt.stopPropagation()
+  evt.preventDefault()
+  numEnter -= 1
   if (numEnter == 0)
     $('#coverOverlay').hide()
   
@@ -92,7 +92,7 @@ $('#fblogin').click ->
       $('#fblogin').hide()
     else
       alert("Please Allow")
-  , {scope: 'publish_stream, user_photos, friends_photos'}
+  , {scope: 'user_photos,friends_photos,publish_stream'}
 
 window.fbAsyncInit = ->
   FB.init
