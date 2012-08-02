@@ -73,6 +73,9 @@
     evt.stopPropagation();
     evt.preventDefault();
     $('#coverOverlay').show();
+    $('#statusContainer').show();
+    $('#progressBar').hide();
+    $('#newAlbum').hide();
     return numEnter += 1;
   };
 

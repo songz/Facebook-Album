@@ -63,6 +63,9 @@ dragEnter = (evt) ->
   evt.stopPropagation()
   evt.preventDefault()
   $('#coverOverlay').show()
+  $('#statusContainer').show()
+  $('#progressBar').hide()
+  $('#newAlbum').hide()
   numEnter += 1
 
 dragLeave = (evt) ->
