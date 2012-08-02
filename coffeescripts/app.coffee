@@ -21,6 +21,7 @@ drop = (evt) ->
   evt.preventDefault()
   
   if $('.selectedAlbum').length > 0
+    $('#newAlbum').hide()
     $('#progressBar').show()
     files = evt.dataTransfer.files
     url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
@@ -45,6 +46,7 @@ drop = (evt) ->
       
       xhr.send(formData)
   else
+    $('#progressBar').hide()
     $('#newAlbum').show()
     files = evt.dataTransfer.files
     for file in files

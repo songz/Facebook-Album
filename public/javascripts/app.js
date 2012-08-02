@@ -30,6 +30,7 @@
     evt.stopPropagation();
     evt.preventDefault();
     if ($('.selectedAlbum').length > 0) {
+      $('#newAlbum').hide();
       $('#progressBar').show();
       files = evt.dataTransfer.files;
       url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
@@ -47,6 +48,7 @@
       }
       return _results;
     } else {
+      $('#progressBar').hide();
       $('#newAlbum').show();
       files = evt.dataTransfer.files;
       _results1 = [];
