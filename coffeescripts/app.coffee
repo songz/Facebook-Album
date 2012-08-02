@@ -1,3 +1,4 @@
+$('#loginOverlay').show()
 navTop = $('.stepMessage').position().top
 tmpStepMessage = $('#instruction2')
 
@@ -80,19 +81,22 @@ getAlbums = (response) ->
 $('#createAlbum').click ->
   FB.api '/me/albums', 'post', {name:'testAlbum', description:'Album is created as a test from the HACK FOR CHANGE'}, (response) ->
   
-$('#fblogout').click ->
-  FB.logout ->
-    $('#fblogin').show()
-    $('#fblogout').hide()
-    
-$('#fblogin').click ->
+$('#fbloginButton').click ->
   FB.login (response) ->
     if (response.authResponse)
       $('#fblogout').show()
-      $('#fblogin').hide()
+      $('#loginOverlay').hide()
+      $('.container').show()
     else
       alert("Please Allow")
   , {scope: 'user_photos,friends_photos,publish_stream'}
+
+$('#fblogout').click ->
+  FB.logout ->
+    $('#loginOverlay').show()
+    $('#fblogout').hide()
+    $('.albumImg').remove()
+    $('.container').hide()
 
 window.fbAsyncInit = ->
   FB.init
@@ -108,6 +112,7 @@ window.fbAsyncInit = ->
     else
       window.fbAccessToken=response.authResponse.accessToken
       FB.api '/me/albums', getAlbums
+      $('#loginOverlay').hide()
       $('#fblogout').show()
       $('#fblogin').hide()
 

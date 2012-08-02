@@ -18,6 +18,30 @@
   z-index:5;
   display:none;
 }
+
+#fbloginButton{
+	width: 249px;
+	height: 51px;
+}
+
+#fbButton:hover{
+	opacity: 0.8;
+}
+
+#loginOverlay{
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color:#000;
+  opacity:0.95;
+  text-align:center;
+  padding-top:120px;
+  z-index:5;
+  display:none;
+}
+
 #coverOverlay h1{
   color:#bbb;
   font-size:60px;
