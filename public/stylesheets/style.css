@@ -1,3 +1,12 @@
+.overlays{
+  text-align:center;
+}
+
+.closeOverlay{
+  margin-top:20px;
+}
+
+
 #instruction2{
   position:fixed;
   top:0;

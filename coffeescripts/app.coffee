@@ -1,3 +1,6 @@
+$('.closeOverlay').click ->
+  $(@).parent('.overlay').hide()
+
 $('#loginOverlay').show()
 navTop = $('.stepMessage').position().top
 tmpStepMessage = $('#instruction2')
@@ -70,9 +73,13 @@ getAlbums = (response) ->
     newDiv.append(newa)
     $('#albumStep').append(newDiv)
     newDiv.click ->
-      $('.selectedAlbum').removeClass('selectedAlbum')
-      $(this).addClass('selectedAlbum')
-      $('.stepMessage').text("Drag Pictures into #{$(this).attr('name')}")
+      if $(@).hasClass('selectedAlbum')
+        $('.selectedAlbum').removeClass('selectedAlbum')
+        $('.stepMessage').text("Drag Pictures in here to create new Album!")
+      else
+        $('.selectedAlbum').removeClass('selectedAlbum')
+        $(this).addClass('selectedAlbum')
+        $('.stepMessage').text("Drag Pictures into #{$(this).attr('name')}")
     
     FB.api "/"+album.cover_photo, (response2) ->
       img = $('.albumImg[coverPhoto='+response2.id+"]").find('img')

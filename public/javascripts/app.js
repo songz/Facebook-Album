@@ -2,6 +2,10 @@
 (function() {
   var dragEnter, dragLeave, drop, getAlbums, navTop, numEnter, prevent, reset, temp, tmpStepMessage;
 
+  $('.closeOverlay').click(function() {
+    return $(this).parent('.overlay').hide();
+  });
+
   $('#loginOverlay').show();
 
   navTop = $('.stepMessage').position().top;
@@ -108,9 +112,14 @@
       newDiv.append(newa);
       $('#albumStep').append(newDiv);
       newDiv.click(function() {
-        $('.selectedAlbum').removeClass('selectedAlbum');
-        $(this).addClass('selectedAlbum');
-        return $('.stepMessage').text("Drag Pictures into " + ($(this).attr('name')));
+        if ($(this).hasClass('selectedAlbum')) {
+          $('.selectedAlbum').removeClass('selectedAlbum');
+          return $('.stepMessage').text("Drag Pictures in here to create new Album!");
+        } else {
+          $('.selectedAlbum').removeClass('selectedAlbum');
+          $(this).addClass('selectedAlbum');
+          return $('.stepMessage').text("Drag Pictures into " + ($(this).attr('name')));
+        }
       });
       _results.push(FB.api("/" + album.cover_photo, function(response2) {
         var img;
