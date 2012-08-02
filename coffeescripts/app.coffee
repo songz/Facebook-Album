@@ -1,3 +1,7 @@
+$('#closeButton').click ->
+  $('#progressBar').hide()
+  $('#statusTable').remove()
+  
 $('.closeOverlay').click ->
   $(@).parent('.overlay').hide()
 
@@ -24,6 +28,17 @@ drop = (evt) ->
     files = evt.dataTransfer.files
     url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
     for file in files
+      html = """
+              <tr>
+                <td><div class="filename">#{file.name}</div></td>
+                <td class="statsProgress">
+                <div class="progress progress-striped active">
+                  <div class="bar" style="width: 40%; height: 100%"></div>
+                </div>
+                </td>
+              </tr>
+              """
+      $('#statusTable').append(html);
       formData = new FormData()
       formData.append('access_token', window.fbAccessToken)
       formData.append(file.name, file)
