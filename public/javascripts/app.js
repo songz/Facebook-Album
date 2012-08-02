@@ -25,7 +25,7 @@
   });
 
   drop = function(evt) {
-    var file, files, formData, newDiv, url, xhr, _i, _j, _len, _len1, _results, _results1;
+    var file, files, formData, html, newDiv, url, xhr, _i, _j, _len, _len1, _results, _results1;
     $('#statusContainer').hide();
     evt.stopPropagation();
     evt.preventDefault();
@@ -36,6 +36,8 @@
       _results = [];
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
+        html = "<tr>\n  <td><div class=\"filename\">" + file.name + "</div></td>\n  <td class=\"statsProgress\">\n  <div class=\"progress progress-striped active\">\n    <div class=\"bar\" style=\"width: 40%; height: 100%\"></div>\n  </div>\n  </td>\n</tr>";
+        $('#statusTable').append(html);
         formData = new FormData();
         formData.append('access_token', window.fbAccessToken);
         formData.append(file.name, file);

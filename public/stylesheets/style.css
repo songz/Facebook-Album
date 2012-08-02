@@ -31,8 +31,30 @@ textArea.newAlbumInput{
 }
 
 #progressBar{
-  display:none;
+  font-family: 'lobster';
+  font-size: 25px;
+	background-color: white;
+	width: 500px;
+	max-height: 600px;
+	display: block;
+	margin: auto;
+	margin-top: 145px;
+	padding: 20px;
 }
+
+.filename{
+  width: 180px;
+  word-wrap: break-word;
+}
+
+.progress{
+  width: 290px;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
 #newAlbum{
   margin-top:60px;
   display:none;
