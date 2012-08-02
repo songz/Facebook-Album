@@ -1,3 +1,10 @@
+#progressBar{
+  display:none;
+}
+#newAlbum{
+  display:none;
+}
+
 .overlay{
 	background-color:#000;
   text-align:center;
@@ -10,7 +17,12 @@
 }
 
 .closeOverlay{
-  margin-top:20px;
+  position:fixed;
+  top:20px;
+  right:30px;
+  color:#fff;
+  text-decoration:underline;
+  cursor:pointer;
 }
 
 
@@ -27,9 +39,12 @@
 
 #coverOverlay{
   opacity:0.95;
-  padding-top:120px;
   display:none;
 }
+#statusContainer{
+  margin-top:120px;
+}
+
 
 #fbloginButton{
 	width: 249px;

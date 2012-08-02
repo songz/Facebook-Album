@@ -1,4 +1,3 @@
-$('#progressOverlay').hide()
 $('.closeOverlay').click ->
   $(@).parent('.overlay').hide()
 
@@ -16,22 +15,25 @@ $(window).scroll ->
     $('#instruction').css('opacity', 1)
 
 drop = (evt) ->
-  $('#coverOverlay').hide()
-  $('#progressOverlay').show()
+  $('#statusContainer').hide()
   evt.stopPropagation()
   evt.preventDefault()
   
-  files = evt.dataTransfer.files
-  url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-  for file in files
-    formData = new FormData()
-    formData.append('access_token', window.fbAccessToken)
-    formData.append(file.name, file)
-    
-    xhr = new XMLHttpRequest()
-    xhr.open("POST", url, true)
-    
-    xhr.send(formData)
+  if $('.selectedAlbum').length > 0
+    $('#progressBar').show()
+    files = evt.dataTransfer.files
+    url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+    for file in files
+      formData = new FormData()
+      formData.append('access_token', window.fbAccessToken)
+      formData.append(file.name, file)
+      
+      xhr = new XMLHttpRequest()
+      xhr.open("POST", url, true)
+      
+      xhr.send(formData)
+  else
+    $('#newAlbum').show()
     
 ## init event handlers
 prevent = (evt) ->
