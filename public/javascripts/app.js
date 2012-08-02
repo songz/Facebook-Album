@@ -2,11 +2,11 @@
 (function() {
   var dragEnter, dragLeave, drop, getAlbums, navTop, numEnter, prevent, reset, temp, tmpStepMessage;
 
+  $('#loginOverlay').show();
+
   $('.closeOverlay').click(function() {
     return $(this).parent('.overlay').hide();
   });
-
-  $('#loginOverlay').show();
 
   navTop = $('.stepMessage').position().top;
 
@@ -25,7 +25,7 @@
   });
 
   drop = function(evt) {
-    var file, files, formData, url, xhr, _i, _len, _results;
+    var file, files, formData, newDiv, url, xhr, _i, _j, _len, _len1, _results, _results1;
     $('#statusContainer').hide();
     evt.stopPropagation();
     evt.preventDefault();
@@ -45,7 +45,18 @@
       }
       return _results;
     } else {
-      return $('#newAlbum').show();
+      $('#newAlbum').show();
+      files = evt.dataTransfer.files;
+      _results1 = [];
+      for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+        file = files[_j];
+        newDiv = $('<div />', {
+          "class": "fileAdd"
+        });
+        newDiv.text(file.name);
+        _results1.push($('#albumFilesContainer').append(newDiv));
+      }
+      return _results1;
     }
   };
 

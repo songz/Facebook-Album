@@ -1,7 +1,12 @@
+#$('#coverOverlay').show()
+#$('#statusContainer').hide()
+#$('#newAlbum').show()
+
+$('#loginOverlay').show()
+
 $('.closeOverlay').click ->
   $(@).parent('.overlay').hide()
 
-$('#loginOverlay').show()
 navTop = $('.stepMessage').position().top
 tmpStepMessage = $('#instruction2')
 
@@ -34,6 +39,11 @@ drop = (evt) ->
       xhr.send(formData)
   else
     $('#newAlbum').show()
+    files = evt.dataTransfer.files
+    for file in files
+      newDiv = $('<div />', {class:"fileAdd"})
+      newDiv.text(file.name)
+      $('#albumFilesContainer').append(newDiv)
     
 ## init event handlers
 prevent = (evt) ->
@@ -138,17 +148,17 @@ window.fbAsyncInit = ->
       $('#fblogout').show()
       $('#fblogin').hide()
       
-temp = (d) -> 
-          js = ""
-          id = 'facebook-jssdk' 
-          ref = d.getElementsByTagName('script')[0]
-          if (d.getElementById(id)) 
-            return
-          js = d.createElement('script') 
-          js.id = id
-          js.async = true
-          js.src = "//connect.facebook.net/en_US/all.js"
-          ref.parentNode.insertBefore(js, ref)
-          "success"
+temp = (d) ->
+  js = ""
+  id = 'facebook-jssdk'
+  ref = d.getElementsByTagName('script')[0]
+  if (d.getElementById(id))
+    return
+  js = d.createElement('script')
+  js.id = id
+  js.async = true
+  js.src = "//connect.facebook.net/en_US/all.js"
+  ref.parentNode.insertBefore(js, ref)
+  "success"
 
 temp(document)

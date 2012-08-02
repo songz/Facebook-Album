@@ -35,14 +35,37 @@
       </div>
 
       <div id="newAlbum">
-        Song's Code!
+        <h1>Enter Album Description:</h1>
+        <fieldset>
+          <input id="albumName" type="text" class="input-large newAlbumInput" placeholder="Album Name"/>
+        </fieldset>
+        <fieldset>
+          <textArea id="albumDescription" placeholder="Album Description" class="newAlbumInput"></textArea>
+        </fieldset>
+
+        <div id="albumFiles">
+          <h2>Files</h2>
+          <div id="albumFilesContainer"></div>
+        </div>
+
+        <fieldset>
+          <span class="btn btn-large">Create Album</span>
+        </fieldset>
       </div>
 
       <span class="closeOverlay">X Close</span>
     </div>
 
     <div id="loginOverlay" class="overlay">
-      <img id="fbloginButton" src="https://dl.dropbox.com/u/20617985/fbLogInButton.png" alt="" />
+      <div id="loginOverlayInside">
+        <h1>Drag Pic 
+          <img src="/images/logo.png" alt="" />
+        </h1>
+        <h3>A simple way to upload your photos to facebook.</h3>
+        <p>Just Login Here.</p>
+        <img id="fbloginButton" src="https://dl.dropbox.com/u/20617985/fbLogInButton.png" alt="" />
+        <p>And Get Started.</p>
+      </div>
     </div>
 
     <div class="stepMessage" id="instruction2">Drag Pictures in here to create new Album!</div>
