@@ -22,9 +22,10 @@
 #fbloginButton{
 	width: 249px;
 	height: 51px;
+  cursor:pointer;
 }
 
-#fbButton:hover{
+#fbloginButton:hover{
 	opacity: 0.8;
 }
 
@@ -69,6 +70,7 @@
   text-align:center;
 }
 .stepMessage{
+  background-color: #fff;
   width:100%;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */

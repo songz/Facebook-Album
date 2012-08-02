@@ -61,7 +61,7 @@ document.addEventListener("drop", drop, false)
 
 getAlbums = (response) ->
   for album in response.data
-    newDiv = $('<div />', {class:'albumImg', coverPhoto:album.cover_photo, id:album.id })
+    newDiv = $('<div />', {class:'albumImg', coverPhoto:album.cover_photo, id:album.id, name:album.name })
     newa = $('<span />', {href:'#', class:'thumbnail'})
     newp = $('<p />', {text:album.name})
     newImg = $('<img />', {src:"http://placehold.it/360x180"})
@@ -72,7 +72,7 @@ getAlbums = (response) ->
     newDiv.click ->
       $('.selectedAlbum').removeClass('selectedAlbum')
       $(this).addClass('selectedAlbum')
-      $('#instruction').text('Drag Pictures here!')
+      $('.stepMessage').text("Drag Pictures into #{$(this).attr('name')}")
     
     FB.api "/"+album.cover_photo, (response2) ->
       img = $('.albumImg[coverPhoto='+response2.id+"]").find('img')
