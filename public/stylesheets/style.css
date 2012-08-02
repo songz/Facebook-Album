@@ -1,5 +1,12 @@
-.overlays{
+.overlay{
+	background-color:#000;
   text-align:center;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  z-index:5;
 }
 
 .closeOverlay{
@@ -14,17 +21,13 @@
   display:none;
 }
 
+#progressOverlay{
+	display: none;
+}
+
 #coverOverlay{
-  position:fixed;
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  background-color:#000;
   opacity:0.95;
-  text-align:center;
   padding-top:120px;
-  z-index:5;
   display:none;
 }
 
@@ -39,16 +42,8 @@
 }
 
 #loginOverlay{
-  position:fixed;
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  background-color:#000;
   opacity:0.95;
-  text-align:center;
   padding-top:120px;
-  z-index:5;
   display:none;
 }
 

@@ -1,3 +1,4 @@
+$('#progressOverlay').hide()
 $('.closeOverlay').click ->
   $(@).parent('.overlay').hide()
 
@@ -16,6 +17,7 @@ $(window).scroll ->
 
 drop = (evt) ->
   $('#coverOverlay').hide()
+  $('#progressOverlay').show()
   evt.stopPropagation()
   evt.preventDefault()
   
