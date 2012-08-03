@@ -29,52 +29,64 @@ class PictureFile
       $("#row#{@fileId}").remove()
       if $('.bar').length == 0
         $('.stepMessage').text("Done. Drag More Pictures in here to create new Album!")
+        $('.selectedAlbum').removeClass('selectedAlbum')
         $('#coverOverlay').hide()
     else
       $("##{@fileId}").attr('style', 'width: '+upload+"%; height:100%")
 
 
+$('#createAlbumButton').click ->
+  albumName = $('#albumName').val()
+  albumDescription = $('#albumDescription').val()
+  FB.api '/me/albums', 'post', {name:albumName, message:albumDescription}, (response) ->
+    uploadPics( newAlbumFiles )
+    
+uploadPics = (files) ->
+  $('#statusContainer').hide()
+  $('#newAlbum').hide()
+  $('#progressBar').show()
+  #url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+  url = "/sendImage"
+  i = 0
+  for file in files
+    fileId = 'file'+i
+    i += 1
+    html = """
+            <tr id="row#{fileId}">
+              <td><div class="filename">#{file.name}</div></td>
+              <td class="statsProgress">
+              <div class="progress progress-striped active">
+                <div id="#{fileId}" class="bar" style="width: 0%; height: 100%"></div>
+              </div>
+              </td>
+            </tr>
+            """
+    $('#statusTable').append(html)
+    formData = new FormData()
+    formData.append('access_token', window.fbAccessToken)
+    formData.append(file.name, file)
+    
+    picture = new PictureFile( fileId )
+    xhr = new XMLHttpRequest()
+    xhr.upload.addEventListener("progress", picture.progressFunction, false)
+    xhr.open("POST", url, true)
+    xhr.send(formData)
+
+newAlbumFiles = []
+
 drop = (evt) ->
+  newAlbumFiles = []
   $('#statusContainer').hide()
   evt.stopPropagation()
   evt.preventDefault()
   
   if $('.selectedAlbum').length > 0
-    $('#newAlbum').hide()
-    $('#progressBar').show()
-    files = evt.dataTransfer.files
-    #url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-    url = "/sendImage"
-    i = 0
-    for file in files
-      fileId = 'file'+i
-      i += 1
-      html = """
-              <tr id="row#{fileId}">
-                <td><div class="filename">#{file.name}</div></td>
-                <td class="statsProgress">
-                <div class="progress progress-striped active">
-                  <div id="#{fileId}" class="bar" style="width: 0%; height: 100%"></div>
-                </div>
-                </td>
-              </tr>
-              """
-      $('#statusTable').append(html)
-      formData = new FormData()
-      formData.append('access_token', window.fbAccessToken)
-      formData.append(file.name, file)
-      
-      picture = new PictureFile( fileId )
-      xhr = new XMLHttpRequest()
-      xhr.upload.addEventListener("progress", picture.progressFunction, false)
-      xhr.open("POST", url, true)
-      
-      xhr.send(formData)
+    uploadPics( evt.dataTransfer.files )
   else
     $('#progressBar').hide()
     $('#newAlbum').show()
-    files = evt.dataTransfer.files
-    for file in files
+    newAlbumFiles = evt.dataTransfer.files
+    for file in newAlbumFiles
       newDiv = $('<div />', {class:"fileAdd"})
       newDiv.text(file.name)
       $('#albumFilesContainer').append(newDiv)
