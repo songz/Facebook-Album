@@ -39,6 +39,7 @@ $('#createAlbumButton').click ->
   albumDescription = $('#albumDescription').val()
   FB.api '/me/albums', 'post', {name:albumName, message:albumDescription}, (response) ->
     albumId = response.id
+    uploadPics( newAlbumFiles, albumId )
     newDiv = $('<div />', {class:'albumImg', coverPhoto:"ag", id:albumId, name:albumName })
     newa = $('<span />', {href:'#', class:'thumbnail'})
     newp = $('<p />', {text:albumName})
@@ -55,13 +56,15 @@ $('#createAlbumButton').click ->
         $('.selectedAlbum').removeClass('selectedAlbum')
         $(this).addClass('selectedAlbum')
         $('.stepMessage').text("Drag Pictures into #{$(this).attr('name')}")
-    uploadPics( newAlbumFiles )
     
-uploadPics = (files) ->
+uploadPics = (files, albumId) ->
   $('#statusContainer').hide()
   $('#newAlbum').hide()
   $('#progressBar').show()
-  url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+  if albumId?
+    url = "https://graph.facebook.com/"+albumId+"/photos"
+  else
+    url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
   #url = "/sendImage"
   i = 0
   for file in files
