@@ -69,6 +69,7 @@
     }, function(response) {
       var albumId, newDiv, newImg, newa, newp;
       albumId = response.id;
+      uploadPics(newAlbumFiles, albumId);
       newDiv = $('<div />', {
         "class": 'albumImg',
         coverPhoto: "ag",
@@ -89,7 +90,7 @@
       newa.append(newImg);
       newDiv.append(newa);
       $('#albumStep').prepend(newDiv);
-      newDiv.click(function() {
+      return newDiv.click(function() {
         if ($(this).hasClass('selectedAlbum')) {
           $('.selectedAlbum').removeClass('selectedAlbum');
           return $('.stepMessage').text("Drag Pictures in here to create new Album!");
@@ -99,16 +100,19 @@
           return $('.stepMessage').text("Drag Pictures into " + ($(this).attr('name')));
         }
       });
-      return uploadPics(newAlbumFiles);
     });
   });
 
-  uploadPics = function(files) {
+  uploadPics = function(files, albumId) {
     var file, fileId, formData, html, i, picture, url, xhr, _i, _len, _results;
     $('#statusContainer').hide();
     $('#newAlbum').hide();
     $('#progressBar').show();
-    url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
+    if (albumId != null) {
+      url = "https://graph.facebook.com/" + albumId + "/photos";
+    } else {
+      url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
+    }
     i = 0;
     _results = [];
     for (_i = 0, _len = files.length; _i < _len; _i++) {
