@@ -26,12 +26,12 @@ class PictureFile
     console.log upload
     console.log @fileId
     if upload == 100
-      $("##{@fileId}").remove()
+      $("#row#{@fileId}").remove()
       if $('.bar').length == 0
         $('.stepMessage').text("Done. Drag More Pictures in here to create new Album!")
         $('#coverOverlay').hide()
     else
-      $("#row#{@fileId}").attr('style', 'width: '+upload+"%; height:100%")
+      $("##{@fileId}").attr('style', 'width: '+upload+"%; height:100%")
 
 
 drop = (evt) ->

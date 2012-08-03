@@ -44,13 +44,13 @@
       console.log(upload);
       console.log(this.fileId);
       if (upload === 100) {
-        $("#" + this.fileId).remove();
+        $("#row" + this.fileId).remove();
         if ($('.bar').length === 0) {
           $('.stepMessage').text("Done. Drag More Pictures in here to create new Album!");
           return $('#coverOverlay').hide();
         }
       } else {
-        return $("#row" + this.fileId).attr('style', 'width: ' + upload + "%; height:100%");
+        return $("#" + this.fileId).attr('style', 'width: ' + upload + "%; height:100%");
       }
     };
 
