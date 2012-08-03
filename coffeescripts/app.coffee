@@ -15,6 +15,25 @@ $(window).scroll ->
     tmpStepMessage.hide()
     $('#instruction').css('opacity', 1)
 
+class PictureFile
+  constructor: (@fileId) ->
+    console.log @fileId
+
+  progressFunction: (evt)=>
+    curr = evt.loaded
+    total = evt.totalSize
+    upload = (curr/total)*100
+    console.log upload
+    console.log @fileId
+    if upload == 100
+      $("##{@fileId}").remove()
+      if $('.bar').length == 0
+        $('.stepMessage').text("Done. Drag More Pictures in here to create new Album!")
+        $('#coverOverlay').hide()
+    else
+      $("#row#{@fileId}").attr('style', 'width: '+upload+"%; height:100%")
+
+
 drop = (evt) ->
   $('#statusContainer').hide()
   evt.stopPropagation()
@@ -24,14 +43,18 @@ drop = (evt) ->
     $('#newAlbum').hide()
     $('#progressBar').show()
     files = evt.dataTransfer.files
-    url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+    #url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+    url = "/sendImage"
+    i = 0
     for file in files
+      fileId = 'file'+i
+      i += 1
       html = """
-              <tr>
+              <tr id="row#{fileId}">
                 <td><div class="filename">#{file.name}</div></td>
                 <td class="statsProgress">
                 <div class="progress progress-striped active">
-                  <div class="bar" style="width: 40%; height: 100%"></div>
+                  <div id="#{fileId}" class="bar" style="width: 0%; height: 100%"></div>
                 </div>
                 </td>
               </tr>
@@ -41,7 +64,9 @@ drop = (evt) ->
       formData.append('access_token', window.fbAccessToken)
       formData.append(file.name, file)
       
+      picture = new PictureFile( fileId )
       xhr = new XMLHttpRequest()
+      xhr.upload.addEventListener("progress", picture.progressFunction, false)
       xhr.open("POST", url, true)
       
       xhr.send(formData)
