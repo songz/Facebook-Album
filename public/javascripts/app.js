@@ -67,6 +67,38 @@
       name: albumName,
       message: albumDescription
     }, function(response) {
+      var albumId, newDiv, newImg, newa, newp;
+      albumId = response.id;
+      newDiv = $('<div />', {
+        "class": 'albumImg',
+        coverPhoto: "ag",
+        id: albumId,
+        name: albumName
+      });
+      newa = $('<span />', {
+        href: '#',
+        "class": 'thumbnail'
+      });
+      newp = $('<p />', {
+        text: albumName
+      });
+      newImg = $('<img />', {
+        src: "http://placehold.it/360x180"
+      });
+      newa.append(newp);
+      newa.append(newImg);
+      newDiv.append(newa);
+      $('#albumStep').prepend(newDiv);
+      newDiv.click(function() {
+        if ($(this).hasClass('selectedAlbum')) {
+          $('.selectedAlbum').removeClass('selectedAlbum');
+          return $('.stepMessage').text("Drag Pictures in here to create new Album!");
+        } else {
+          $('.selectedAlbum').removeClass('selectedAlbum');
+          $(this).addClass('selectedAlbum');
+          return $('.stepMessage').text("Drag Pictures into " + ($(this).attr('name')));
+        }
+      });
       return uploadPics(newAlbumFiles);
     });
   });
@@ -76,7 +108,7 @@
     $('#statusContainer').hide();
     $('#newAlbum').hide();
     $('#progressBar').show();
-    url = "/sendImage";
+    url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
     i = 0;
     _results = [];
     for (_i = 0, _len = files.length; _i < _len; _i++) {
@@ -223,6 +255,8 @@
   $('#fbloginButton').click(function() {
     return FB.login(function(response) {
       if (response.authResponse) {
+        window.fbAccessToken = response.authResponse.accessToken;
+        FB.api('/me/albums', getAlbums);
         $('#fblogout').show();
         $('#loginOverlay').hide();
         return $('.container').show();
@@ -268,8 +302,6 @@
         $('#fblogin').show();
         return $('#fblogout').hide();
       } else {
-        window.fbAccessToken = response.authResponse.accessToken;
-        FB.api('/me/albums', getAlbums);
         $('#fblogout').show();
         return $('#fblogin').hide();
       }

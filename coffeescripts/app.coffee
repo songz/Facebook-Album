@@ -34,19 +34,35 @@ class PictureFile
     else
       $("##{@fileId}").attr('style', 'width: '+upload+"%; height:100%")
 
-
 $('#createAlbumButton').click ->
   albumName = $('#albumName').val()
   albumDescription = $('#albumDescription').val()
   FB.api '/me/albums', 'post', {name:albumName, message:albumDescription}, (response) ->
+    albumId = response.id
+    newDiv = $('<div />', {class:'albumImg', coverPhoto:"ag", id:albumId, name:albumName })
+    newa = $('<span />', {href:'#', class:'thumbnail'})
+    newp = $('<p />', {text:albumName})
+    newImg = $('<img />', {src:"http://placehold.it/360x180"})
+    newa.append(newp)
+    newa.append(newImg)
+    newDiv.append(newa)
+    $('#albumStep').prepend(newDiv)
+    newDiv.click ->
+      if $(@).hasClass('selectedAlbum')
+        $('.selectedAlbum').removeClass('selectedAlbum')
+        $('.stepMessage').text("Drag Pictures in here to create new Album!")
+      else
+        $('.selectedAlbum').removeClass('selectedAlbum')
+        $(this).addClass('selectedAlbum')
+        $('.stepMessage').text("Drag Pictures into #{$(this).attr('name')}")
     uploadPics( newAlbumFiles )
     
 uploadPics = (files) ->
   $('#statusContainer').hide()
   $('#newAlbum').hide()
   $('#progressBar').show()
-  #url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-  url = "/sendImage"
+  url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
+  #url = "/sendImage"
   i = 0
   for file in files
     fileId = 'file'+i
@@ -154,6 +170,8 @@ $('#createAlbum').click ->
 $('#fbloginButton').click ->
   FB.login (response) ->
     if (response.authResponse)
+      window.fbAccessToken=response.authResponse.accessToken
+      FB.api '/me/albums', getAlbums
       $('#fblogout').show()
       $('#loginOverlay').hide()
       $('.container').show()
@@ -192,8 +210,6 @@ window.fbAsyncInit = ->
       $('#fblogin').show()
       $('#fblogout').hide()
     else
-      window.fbAccessToken=response.authResponse.accessToken
-      FB.api '/me/albums', getAlbums
       $('#fblogout').show()
       $('#fblogin').hide()
       
