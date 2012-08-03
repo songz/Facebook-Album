@@ -35,11 +35,17 @@ textArea.newAlbumInput{
   font-size: 25px;
 	background-color: white;
 	width: 500px;
-	max-height: 600px;
+	max-height: 500px;
 	display: block;
 	margin: auto;
-	margin-top: 145px;
+	margin-top: 110px;
 	padding: 20px;
+	border-radius: 20px;
+}
+
+#statusTable{
+  max-height: 400px;
+  overflow: auto;
 }
 
 .filename{
