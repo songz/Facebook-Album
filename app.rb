@@ -12,7 +12,7 @@ post '/sendImage' do
   headers \
     'Access-Control-Allow-Origin' => '*',
     'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS',
-    'Access-Control-Max-Age' => "1728000"
+    'Access-Control-Max-Age' => "2344056501644"
   return "success!"
 end
 
@@ -24,6 +24,6 @@ get '/sendImage' do
   headers \
     'Access-Control-Allow-Origin' => '*',
     'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS',
-    'Access-Control-Max-Age' => "1728000"
+    'Access-Control-Max-Age' => "2344056501644"
   return "success!"
 end
