@@ -65,7 +65,7 @@ uploadPics = (files, albumId) ->
     url = "https://graph.facebook.com/"+albumId+"/photos"
   else
     url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-  #url = "/sendImage"
+  url = "http://dragpic.herokuapp.com/sendImage"
   i = 0
   for file in files
     fileId = 'file'+i
