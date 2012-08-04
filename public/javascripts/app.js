@@ -113,7 +113,7 @@
     } else {
       url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
     }
-    url = "http://dragpic.herokuapp.com/sendImage";
+    url = "/sendImage";
     i = 0;
     _results = [];
     for (_i = 0, _len = files.length; _i < _len; _i++) {
