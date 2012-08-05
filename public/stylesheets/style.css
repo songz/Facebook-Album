@@ -267,5 +267,7 @@ textArea.newAlbumInput{
 .selectedAlbum p{
   opacity:1;
 }
-
+#donationOverlay label{
+  color:#39f;
+}
 
