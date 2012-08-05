@@ -1,9 +1,13 @@
-#notificationContainer{
-  position:absolute;
-  top:0px;
+#donationOverlay{
+  display:none;
+}
+
+#socialButtons{
+  position:fixed;
+  top:300px;
   text-align:center;
   margin:auto;
-  width:100%
+  z-index:5;
 }
 #donateButton{
   cursor:pointer;

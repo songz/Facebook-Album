@@ -1,3 +1,7 @@
+$('#donateButton').click ->
+  $('#donationOverlay').show()
+
+
 $('#loginOverlay').show()
 
 $('.closeOverlay').click ->

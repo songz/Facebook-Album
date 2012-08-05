@@ -3,6 +3,10 @@
   var PictureFile, dragEnter, dragLeave, drop, getAlbums, navTop, newAlbumFiles, numEnter, prevent, reset, temp, tmpStepMessage, uploadPics,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
+  $('#donateButton').click(function() {
+    return $('#donationOverlay').show();
+  });
+
   $('#loginOverlay').show();
 
   $('.closeOverlay').click(function() {
