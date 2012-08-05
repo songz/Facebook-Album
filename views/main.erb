@@ -11,28 +11,35 @@
     <style type="text/css"></style>
   </head>
   <body>
-    <div id="fblogout" class="authButton">Log Out of Facebook</div>
-
-      <h1 id="pageTitle">Upload Pictures to Facebook</h1>
-
-      <div class="stepMessage" id="instruction">Drag Pictures in here to create new Album!</div>
-
-    <div class="container">
-      <center>
-        <div class="row" id="albumStep"> </div>
-      </center>
-
+    <div id="notificationContainer">
+      <div id="donateButton" class="">Donate</div>
     </div>
+
+    <div class="authButton">
+      <div id="fblogout" class="autoElement">Log Out of Facebook</div>
+      <div id="goToFB" class="autoElement">FaceBook Pictures</div>
+    </div>
+
+    <h1 id="pageTitle">Upload Pictures to Facebook</h1>
+
+    <div class="stepMessage" id="instruction">Drag Pictures in here to create new Album!</div>
+    <div class="stepMessage" id="instruction2">Drag Pictures in here to create new Album!</div>
+
+    <div class="" id="albumStep"></div>
+
+
 
     <div id="coverOverlay" class="overlay">
       <div id="statusContainer">
         <h1>Drop your Files</h1>
         <h1>Here!</h1>
       </div>
-            
+
       <div id="progressBar">
         Uploading status:
-        <table id="statusTable"> </table>
+        <div id="filesUploadStatus">
+          <table id="statusTable"> </table>
+        </div>
       </div>
 
       <div id="newAlbum">
@@ -57,6 +64,10 @@
       <span class="closeOverlay">X Close</span>
     </div>
 
+
+
+
+
     <div id="loginOverlay" class="overlay">
       <div id="loginOverlayInside">
         <h1>Drag Pic 
@@ -68,8 +79,6 @@
         <p>And Get Started.</p>
       </div>
     </div>
-
-    <div class="stepMessage" id="instruction2">Drag Pictures in here to create new Album!</div>
 
     <div id="fb-root"></div>
     <script src="http://code.jquery.com/jquery-1.7.2.min.js" type="text/javascript"></script>

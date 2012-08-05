@@ -225,7 +225,7 @@
         text: album.name
       });
       newImg = $('<img />', {
-        src: "http://placehold.it/360x180"
+        src: "http://placehold.it/170x150"
       });
       newa.append(newp);
       newa.append(newImg);
@@ -295,6 +295,11 @@
         return $('#fblogout').hide();
       } else {
         window.fbAccessToken = response.authResponse.accessToken;
+        FB.api('/me', function(response2) {
+          return $('#goToFB').click(function() {
+            return window.location.href = "http://facebook.com/" + response2.username + "/photos";
+          });
+        });
         FB.api('/me/albums', getAlbums);
         $('#loginOverlay').hide();
         $('#fblogout').show();

@@ -1,3 +1,16 @@
+#notificationContainer{
+  position:absolute;
+  top:0px;
+  text-align:center;
+  margin:auto;
+  width:100%
+}
+#donateButton{
+  cursor:pointer;
+  padding:20px;
+}
+
+
 #albumFiles{
   color:#999;
   font-family:'cabin';
@@ -43,7 +56,7 @@ textArea.newAlbumInput{
 	border-radius: 20px;
 }
 
-#statusTable{
+#fileUploadStatus{
   max-height: 400px;
   overflow: auto;
 }
@@ -161,19 +174,21 @@ textArea.newAlbumInput{
 }
 
 .authButton{
-  display:none;
-  position:absolute;
   top:20px;
   right:20px;
+  position:absolute;
   cursor:pointer;
+}
+.autoElement{
   opacity:0.5;
 }
-.authButton:hover{
+.autoElement:hover{
   opacity:1;
 }
 #pageTitle{
-  margin-top:80px;
-  margin-bottom:30px;
+  background-image:url(/images/tiny_grid.png);
+  padding-top:80px;
+  padding-bottom:30px;
   font-size:81px;
   line-height:100%;
   font-family:'lobster';
@@ -211,6 +226,7 @@ textArea.newAlbumInput{
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;  
   text-align:center;
+  margin:auto 50px auto 50px;
 }
 
 .albumImg{

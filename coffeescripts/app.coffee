@@ -149,7 +149,7 @@ getAlbums = (response) ->
     newDiv = $('<div />', {class:'albumImg', coverPhoto:album.cover_photo, id:album.id, name:album.name })
     newa = $('<span />', {href:'#', class:'thumbnail'})
     newp = $('<p />', {text:album.name})
-    newImg = $('<img />', {src:"http://placehold.it/360x180"})
+    newImg = $('<img />', {src:"http://placehold.it/170x150"})
     newa.append(newp)
     newa.append(newImg)
     newDiv.append(newa)
@@ -202,6 +202,9 @@ window.fbAsyncInit = ->
       $('#fblogout').hide()
     else
       window.fbAccessToken=response.authResponse.accessToken
+      FB.api '/me', (response2) ->
+        $('#goToFB').click ->
+          window.location.href="http://facebook.com/#{response2.username}/photos"
       FB.api '/me/albums', getAlbums
       $('#loginOverlay').hide()
       $('#fblogout').show()
