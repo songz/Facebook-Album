@@ -87,7 +87,7 @@ textArea.newAlbumInput{
 }
 
 .overlay{
-	background-color:#000;
+	background-color:rgba(0,0,0, 0.93);
   text-align:center;
   position:fixed;
   top:0;
@@ -120,7 +120,6 @@ textArea.newAlbumInput{
 }
 
 #coverOverlay{
-  opacity:0.95;
   display:none;
 }
 #statusContainer{
@@ -171,11 +170,20 @@ textArea.newAlbumInput{
   margin: 30px auto 30px auto;
 }
 
-#coverOverlay h1{
-  color:#bbb;
+.overlay h1{
+  color:#eee;
   font-size:60px;
   font-family:'lobster';
   line-height:140%;
+  position: relative;
+}
+.overlay .textGradient{
+  background: url(http://www.webdesignerwall.com/demo/css-gradient-text/images/gradient-dark.png) repeat-x;
+  position: absolute;
+  bottom: -0.1em;
+  display: block;
+  width: 100%;
+  height: 38px;
 }
 
 .authButton{
