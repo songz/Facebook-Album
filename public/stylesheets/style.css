@@ -109,6 +109,7 @@ textArea.newAlbumInput{
 
 #instruction2{
   position:fixed;
+  z-index:2;
   top:0;
   opacity:1;
   display:none;
