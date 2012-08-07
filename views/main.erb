@@ -104,32 +104,52 @@
 
     <div id="donationOverlay" class="overlay">
       <h1>Thanks for your support!</h1>
+      <p>**Note: <a href="https://www.stripe.com">Stripe</a> handles all payment processes to ensure your maximum security and protection :) </p>
       <span class="closeOverlay">X Close</span>
       <form action="/charge" method="POST" id="payment-form">
         <div class="form-row">
+          <label>Name</label>
+          <input type="text" size="10" autocomplete="off" class="name"/>
+        </div>
+         <div class="form-row">
+          <label>Email</label>
+          <input type="email" size="30" id="em" autocomplete="off" name="usremail" class="email"/>
+        </div>
+        <div class="form-row">
           <label>Card Number</label>
-          <input type="text" size="20" maxlength="16" autocomplete="on" class="card-number"/>
+          <input type="text" pattern="[0-9.]+" name="quantity" size="18" maxlength="20" autocomplete="on" class="card-number" id="edit1"/>
         </div>
         <div class="form-row">
           <label>CVC</label>
-          <input type="text" size="4" maxlength="4" autocomplete="off" class="card-cvc"/>
+          <input type="text" size="4" maxlength="4" autocomplete="off" class="card-cvc" id="edit2"/>
         </div>
         <div class="form-row">
           <label>Expiration (MM/YYYY)</label>
-          <input type="text" size="2" maxlength="2" class="card-expiry-month"/>
-          <span> / </span>
-          <input type="text" size="4" maxlength="4" class="card-expiry-year"/>
+          <select class="card-expiry-month">
+            <option value="-1">Select</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <span class="divide"> / </span>
+          <input type="number" class="card-expiry-year" id="edit4" size="5"/>
         </div>
         <div class="form-row">
-          <label>Amount of Donation ($)</label>
-          <input type="text" size="4" autocomplete="on" name="Amount" class="donamount"/>
+          <label>Amount of Donation($)</label>
+          <input type="number" min="1" size="4" autocomplete="on" name="Amount" class="donamount" id="edit3"/>
         </div>
-        <button type="submit" class="submit-button">Submit Payment</button>
+        <button type="submit" class="btn btn-primary submit-button">Submit Payment</button>
       </form>
-
     </div>
-
-
 
     <div id="loginOverlay" class="overlay">
       <div id="loginOverlayInside">
@@ -146,9 +166,26 @@
     <div id="fb-root"></div>
     <script src="javascripts/app.js"></script>
     <script type="text/javascript">
-        $("#payment-form").submit(function(event) {
+      function validateNumber(event) {
+        var key = window.event ? event.keyCode : event.which;
+        if (event.keyCode == 8 || event.keyCode == 46
+            || event.keyCode == 37 || event.keyCode == 39) {
+          return true;
+        }
+        else if ( key < 48 || key > 57 ) {
+          return false;
+        }
+        else return true;
+      }; 
+      $(document).ready(function(){
+          $('[id^=edit]').keypress(validateNumber);
+      });
+    </script>
+    <script type="text/javascript">
+       $("#payment-form").submit(function(event) {
           $('.submit-button').attr("disabled", "disabled");
-
+            var ee = $('#em').val();
+            $.post('/charge', {email:ee}, function(a){})
           Stripe.createToken({
             number: $('.card-number').val(),
             cvc: $('.card-cvc').val(),
