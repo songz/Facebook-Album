@@ -278,4 +278,18 @@ textArea.newAlbumInput{
 #donationOverlay label{
   color:#39f;
 }
-
+#donationOverlay h1{
+  padding-bottom:25px;
+  padding-top:60px;
+}
+#donationOverlay p{
+  color:#390;
+  font-style:italic;
+  padding-bottom:40px;
+}
+.submit-button {
+  margin-top:20px
+}
+.divide {
+  color:#39f;
+}

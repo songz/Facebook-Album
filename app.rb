@@ -40,19 +40,20 @@ post '/charge' do
   customer = Stripe::Customer.create(
     :card => token,
     :plan => "customer",
-    :email => "payinguser@example.com"
+    :email => params[:email] 
   )
-  
-  p "=================="
-  p params[:Amount].to_i*100
-  p "==================="
-  p "=========="
+
   # create the charge on Stripe's servers - this will charge the user's card
+
   charge = Stripe::Charge.create(
-   :amount => params[:Amount].to_i*100, # amount in cents, again
-   :currency => "usd",
-   :customer => customer.id,
-   :description => "payinguser@example.com"
+  :amount => params[:Amount].to_i*100, # amount in cents, again
+  :currency => "usd",
+  :customer => customer.id,
+  :description => params[:email]
   )
+
   redirect '/'
+end
+
+def save
 end
