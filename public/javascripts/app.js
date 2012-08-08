@@ -8,7 +8,13 @@
   });
 
   $('#getEmails').click(function() {
-    return $('#emailForm').toggle();
+    if ($('#emailForm').is(":visible")) {
+      return $('#emailForm').slideUp('slow');
+    } else {
+      return $('#emailForm').slideDown('slow', function() {
+        return $('#name').focus();
+      });
+    }
   });
 
   $('#loginOverlay').show();
@@ -119,7 +125,6 @@
     } else {
       url = "https://graph.facebook.com/" + $('.selectedAlbum').attr('id') + "/photos";
     }
-    url = "/sendImage";
     i = 0;
     _results = [];
     for (_i = 0, _len = files.length; _i < _len; _i++) {

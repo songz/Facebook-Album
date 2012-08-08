@@ -2,33 +2,9 @@ require 'rubygems'
 require 'sinatra'
 require 'stripe'
 require 'mail'
-require 'httparty'
 
 get '/' do
   erb :main
-end
-
-post '/sendImage' do
-  #string_io = request.body
-  #p data_bytes = string_io.read
-  status 200
-  headers \
-    'Access-Control-Allow-Origin' => '*',
-    'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS',
-    'Access-Control-Max-Age' => "2344056501644"
-  return "success!"
-end
-
-
-get '/sendImage' do
-  #string_io = request.body
-  #p data_bytes = string_io.read
-  status 200
-  headers \
-    'Access-Control-Allow-Origin' => '*',
-    'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS',
-    'Access-Control-Max-Age' => "2344056501644"
-  return "success!"
 end
 
 post '/charge' do
@@ -58,12 +34,26 @@ post '/charge' do
 end
 
 post '/' do
-  name = params[:name]
-  comment = params[:comment]
+  fname = params[:fname]
+  lname = params[:lname]
   userEmail = params[:userEmail]
-
-  ## Take out HTTParty.post before publishing
-  HTTParty.post("http://evafong.herokuapp.com/users/", :query => { :"user[email]" => userEmail, :"user[name]" => name, :"user[comment]" =>comment})
-
+  Mail.defaults do
+  delivery_method :smtp, { :address   => "smtp.sendgrid.net",
+                           :port      => 587,
+                           :domain    => "dragpic.herokuapp.com",
+                           :user_name => "hbkm",
+                           :password  => "abc123",
+                           :authentication => 'plain',
+                           :enable_starttls_auto => true }
+  end
+  
+  mail = Mail.deliver do
+   from     'signup@test.'
+   to       'moon1991@gmail.com'
+   subject  'Dragpic'
+   text_part do
+    body    fname+' '+lname+' '+userEmail 
+   end
+  end  
   redirect '/'
 end

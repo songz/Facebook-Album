@@ -2,7 +2,12 @@ $('#donateButton').click ->
   $('#donationOverlay').show()
 
 $('#getEmails').click ->
-  $('#emailForm').toggle()
+  if $('#emailForm').is(":visible")
+    $('#emailForm').slideUp 'slow' 
+
+  else
+    $('#emailForm').slideDown 'slow' , ->
+      $('#name').focus()
 
 
 $('#loginOverlay').show()
@@ -72,7 +77,7 @@ uploadPics = (files, albumId) ->
     url = "https://graph.facebook.com/"+albumId+"/photos"
   else
     url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-  url = "/sendImage"
+    #url = "/sendImage"
   i = 0
   for file in files
     fileId = 'file'+i
