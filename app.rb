@@ -37,6 +37,8 @@ post '/' do
   fname = params[:fname]
   lname = params[:lname]
   userEmail = params[:userEmail]
+
+
   Mail.defaults do
   delivery_method :smtp, { :address   => "smtp.sendgrid.net",
                            :port      => 587,
