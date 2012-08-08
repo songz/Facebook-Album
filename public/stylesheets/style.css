@@ -2,7 +2,7 @@
   display:none;
 }
 
-.getEmails{
+#getEmails{
   height:30px;
   position:absolute;
   top: 0;
@@ -13,6 +13,30 @@
   color: white;
   line-height:30px;
   cursor:pointer;
+}
+
+#emailForm{
+  background-color:#eee;
+  position:absolute;
+  width: 250px;
+  top: 30px;
+  height: 150px;
+  righj: 90px;
+  box-shadow: 0 0 5px #888;
+  border-radius: 5px;
+  z-index: 4;
+  right: 100px;
+  display:none;
+}
+
+#emailBox{
+  width: 220px;
+  display: block;
+  margin: 5px auto;
+}
+
+.buttonWidth{
+  width: 220px;
   
 }
 

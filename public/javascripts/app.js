@@ -7,6 +7,10 @@
     return $('#donationOverlay').show();
   });
 
+  $('#getEmails').click(function() {
+    return $('#emailForm').toggle();
+  });
+
   $('#loginOverlay').show();
 
   $('.closeOverlay').click(function() {

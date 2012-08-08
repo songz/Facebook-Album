@@ -1,6 +1,9 @@
 $('#donateButton').click ->
   $('#donationOverlay').show()
 
+$('#getEmails').click ->
+  $('#emailForm').toggle()
+
 
 $('#loginOverlay').show()
 

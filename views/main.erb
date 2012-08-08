@@ -17,10 +17,20 @@
   </head>
   <body>
 
-    <div class="getEmails" id="infoBar">
-      We're working on step by step tutorials on how to build this app. Leave your email to be notified when it's ready. Click this bar to enter. 
+    <div id="getEmails">
+      We're working on step by step tutorials on how to build this app. Leave your email to be notified when it's ready. Click here. <i style="font-size: 14px;">&#9660;</i> 
     </div>
 
+    <div id="emailForm">
+      <div id="emailBox">
+        <form method="POST" action="/">
+          <input id="fname" type="text" name="fname" placeholder="First Name"/><br/>
+          <input id="lname" type="text" name="lname" placeholder="Last Name"/><br/>
+          <input id="email" type="email" name="userEmail" placeholder="Email"/><br/>
+          <input type="submit" class="buttonWidth btn btn-primary" id="emailButton"/>
+        </form>
+      </div> 
+    </div>
 
     <div id="socialContainer">
       <div id="connect">

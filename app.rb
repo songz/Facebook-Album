@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'stripe'
+require 'mail'
 
 get '/' do
   erb :main
@@ -55,5 +56,27 @@ post '/charge' do
   redirect '/'
 end
 
-def save
+post '/' do
+  fname = params[:fname]
+  lname = params[:lname]
+  userEmail = params[:userEmail]
+  Mail.defaults do
+  delivery_method :smtp, { :address   => "smtp.sendgrid.net",
+                           :port      => 587,
+                           :domain    => "dragpic.herokuapp.com",
+                           :user_name => "hbkm",
+                           :password  => "abc123",
+                           :authentication => 'plain',
+                           :enable_starttls_auto => true }
+  end
+  
+  mail = Mail.deliver do
+   from     'signup@dragpic.com'
+   to       'moon1991@gmail.com'
+   subject  'Dragpic'
+   text_part do
+    body    fname+' '+lname+' '+userEmail 
+   end
+  end  
+  redirect '/'
 end
