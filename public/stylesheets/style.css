@@ -20,13 +20,17 @@
   position:absolute;
   width: 250px;
   top: 30px;
-  height: 150px;
+  height: 190px;
   righj: 90px;
   box-shadow: 0 0 5px #888;
   border-radius: 5px;
   z-index: 4;
   right: 100px;
   display:none;
+}
+
+#comment{
+  height: 50px;
 }
 
 #emailBox{
