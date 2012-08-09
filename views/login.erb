@@ -48,6 +48,7 @@
       display: block;
       margin: auto;
       padding-top: 15px;
+      padding-bottom: 20px;
       font-family: "Josefin Sans";
       line-height: 28px; 
       width: 80%;
@@ -59,19 +60,36 @@
       margin: auto;
     }  
     .fong{
-      background-color: #ccc;
+      background-color: rgba(50,50,50,0.9);
       display: block;
-      width: 380px;
-      height: 130px;
       position: absolute;
-      opacity: 0.9;
       z-index: 3;
       display: none;
-      margin-left: 49px;
+      margin-left: 53px;
       margin-top: 360px;
+      color: #fff;
+      font-family: "Josefin Sans";
+      font-size: 23px; 
+      line-height: 30px;
     }
     .eva{
-    
+      background-color: rgba(50,50,50,0.9);
+      display: block;
+      position: absolute;
+      z-index: 3;
+      display: none;
+      margin-left: 53px;
+      margin-top: 360px;
+      color: #fff;
+      font-family: "Josefin Sans";
+      font-size: 23px; 
+      line-height: 30px;
+    }
+    .footnote{
+      text-align: center;
+      font-family: "Josefin Sans", italic;
+      font-size: 16px;  
+
     }
 
   </style>
@@ -88,28 +106,24 @@
     <div class="headaboutus">
       <img src="images/aboutus.png" alt="" />
       <p id="us">
-      DragPic is our first open sourced project on <a href="https://github.com/songz/Facebook-Album.git">GitHub</a>. With the help from our mentor<a href="https://twitter.com/songzme"> Song Zheng</a>, we began just a couple months ago, and are loving it! You can help us improve our code on GitHub, or just let one of us (<a href="https://twitter.com/FongChinxx">Fong</a> || <a href="https://twitter.com/eeevahhh">Eva</a>) know on Twitter :D
-      </p>
+      We started programming two months ago, and this is our first open sourced project on <a href="https://github.com/songz/Facebook-Album.git">GitHub</a>. Please feel free to send pull requests to help us improve! <br /> P.S. To give back to our community, we will be making tutorials on how to build your own DragPic ☺</p>
 
   </div>
     <div class="bio">
-      <div class="fong">boo</div>
-      <div class="eva"></div>
+      <div class="fong"><br /> Talk to me on <a href="https://twitter.com/FongChinxx">Twitter,</a><br /> And follow my <a href="http://www.fongchin.com">Journey!</a><br />♔</div>
+      <div class="eva"><br /> Talk to me on <a href="https://twitter.com/eeevahhh">Twitter,</a><br /> And follow my <a href="http://www.gowitherz.me">Journey!</a><br />♔</div>
       <img src="images/fong.png" alt="" class="fongpic" />
       <img src="images/eva.png" alt="" class="evapic" />
-      <p id="us">
-        Feel free to follow our code journey by reading our blogs!
-      </p>
-      <p id="us">
-<a href="http://www.fongchin.com">Fong's Blogawog</a>   ||    
-<a href="http://www.gowitherz.me">Eva's Blogawog</a>   
-      </p>
     </div>
+    <div class="footnote">✌ Made with Dedication, Optimism, and Two Dreams ✌</div>
   
+
+  <div id="fb-root"></div>
   <script src="http://code.jquery.com/jquery-1.7.2.min.js" type="text/javascript"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
     
   <script type="text/javascript">
+  function mouseOverPic(e){
     fheight=$(".fongpic").height();
     fwidth=$(".fongpic").width();
     fpos=$(".fongpic").position();
@@ -117,27 +131,74 @@
     ewidth=$(".evapic").width();
     epos=$(".evapic").position();
 
-    fcounter=0;
-    fhoverin=
-      function(){
-        $(".fong").css({
+    if (e.pageX > fpos.left && e.pageX < fpos.left+fwidth && e.pageY < fpos.top+fheight && e.pageY > fpos.top) {
+      $(".fong").css({
           'display': "none",
           'top':fpos.top,
           'left':fpos.left,
-          'width':fwidth-104,
+          'width':fwidth-110,
           'height':fheight-510,
           })
-      };
+      $(".fong").show();
+    }else{
+      $(".fong").hide();
+    }
 
-  function fhoverout (e){
-      console.log(e.clientY);
-      console.log(fpos.top);
-      console.log(fheight);
-      if (e.screenX < fpos.left || e.screenX > fpos.left+fwidth || e.screenY < fpos.top-fheight || e.screenY > fpos.top) {
-    $(".fong").css('display', "block");
-   }
+    if (e.pageX > epos.left && e.pageX < epos.left+ewidth && e.pageY < epos.top+eheight && e.pageY > epos.top) {
+      $(".eva").css({
+          'display': "none",
+          'top':epos.top,
+          'left':epos.left,
+          'width':ewidth-110,
+          'height':eheight-510,
+          })
+      $(".eva").show();
+    }else{
+      $(".eva").hide();
+    }
   };
-   $(".fongpic").mousemove(fhoverin, fhoverout);
+  
+   $(document).mousemove(mouseOverPic);
+
+  $('#fbloginButton').click(function() {
+    return FB.login(function(response) {
+      if (response.authResponse) {
+        window.fbAccessToken = response.authResponse.accessToken;
+        return window.location = '/';
+      } else {
+        return alert("Please Allow");
+      }
+    }, {
+      scope: 'user_photos,friends_photos,publish_stream'
+    });
+  });
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '132631233489866',
+      status: true,
+      cookie: true,
+      xfbml: true
+    });
+  }; 
+
+  temp = function(d) {
+  var id, js, ref;
+  js = "";
+  id = 'facebook-jssdk';
+  ref = d.getElementsByTagName('script')[0];
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement('script');
+  js.id = id;
+  js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js";
+  ref.parentNode.insertBefore(js, ref);
+  return "success";
+};
+
+  temp(document);
 </script>
 </body>
 </html>
