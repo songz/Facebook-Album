@@ -2,6 +2,10 @@ require 'rubygems'
 require 'sinatra'
 require 'stripe'
 
+get '/login' do
+  erb :login
+end
+
 get '/' do
   erb :main
 end
