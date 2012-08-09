@@ -3,11 +3,18 @@
   var PictureFile, dragEnter, dragLeave, drop, getAlbums, navTop, newAlbumFiles, numEnter, prevent, reset, temp, tmpStepMessage, uploadPics,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
+  $('#emailForm').hide();
+
   $('#donateButton').click(function() {
     return $('#donationOverlay').show();
   });
 
   $('#getEmails').click(function() {
+    var newLeft;
+    newLeft = $('#caret').position().left - 150 + 'px';
+    $('#emailForm').css({
+      left: newLeft
+    });
     if ($('#emailForm').is(":visible")) {
       return $('#emailForm').slideUp('slow');
     } else {
@@ -17,7 +24,9 @@
     }
   });
 
-  $('#loginOverlay').show();
+  window.onresize = function() {
+    return $('#emailForm').hide();
+  };
 
   $('.closeOverlay').click(function() {
     return $(this).parent('.overlay').hide();
@@ -274,7 +283,6 @@
         window.fbAccessToken = response.authResponse.accessToken;
         FB.api('/me/albums', getAlbums);
         $('#fblogout').show();
-        $('#loginOverlay').hide();
         return $('.container').show();
       } else {
         return alert("Please Allow");
@@ -286,10 +294,7 @@
 
   $('#fblogout').click(function() {
     return FB.logout(function() {
-      $('#loginOverlay').show();
-      $('#fblogout').hide();
-      $('.albumImg').remove();
-      return $('.container').hide();
+      return window.location = '/login';
     });
   });
 
@@ -302,8 +307,7 @@
     });
     FB.getLoginStatus(function(response) {
       if (response.status !== "connected") {
-        $('#fblogin').show();
-        return $('#fblogout').hide();
+        return window.location = '/login';
       } else {
         window.fbAccessToken = response.authResponse.accessToken;
         FB.api('/me', function(response2) {
@@ -312,19 +316,15 @@
           });
         });
         FB.api('/me/albums', getAlbums);
-        $('#loginOverlay').hide();
-        $('#fblogout').show();
-        return $('#fblogin').hide();
+        return $('#fblogout').show();
       }
     });
     return FB.Event.subscribe('auth.statusChange', function(response) {
       console.log("status changes");
       if (response.status !== "connected") {
-        $('#fblogin').show();
-        return $('#fblogout').hide();
+        return windown.location = '/login';
       } else {
-        $('#fblogout').show();
-        return $('#fblogin').hide();
+        return $('#fblogout').show();
       }
     });
   };

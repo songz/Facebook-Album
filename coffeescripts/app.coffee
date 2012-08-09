@@ -1,17 +1,19 @@
+$('#emailForm').hide()
 $('#donateButton').click ->
   $('#donationOverlay').show()
 
 $('#getEmails').click ->
+  newLeft=$('#caret').position().left-150+'px'
+  $('#emailForm').css({left:newLeft})
   if $('#emailForm').is(":visible")
-    $('#emailForm').slideUp 'slow' 
-
+    $('#emailForm').slideUp 'slow'
   else
     $('#emailForm').slideDown 'slow' , ->
       $('#name').focus()
 
-
-$('#loginOverlay').show()
-
+window.onresize = ->
+  $('#emailForm').hide()
+  
 $('.closeOverlay').click ->
   $(@).parent('.overlay').hide()
 
@@ -188,7 +190,6 @@ $('#fbloginButton').click ->
       window.fbAccessToken=response.authResponse.accessToken
       FB.api '/me/albums', getAlbums
       $('#fblogout').show()
-      $('#loginOverlay').hide()
       $('.container').show()
     else
       alert("Please Allow")
@@ -196,10 +197,7 @@ $('#fbloginButton').click ->
 
 $('#fblogout').click ->
   FB.logout ->
-    $('#loginOverlay').show()
-    $('#fblogout').hide()
-    $('.albumImg').remove()
-    $('.container').hide()
+    window.location = '/login'
 
 window.fbAsyncInit = ->
   FB.init
@@ -210,26 +208,21 @@ window.fbAsyncInit = ->
 
   FB.getLoginStatus (response) ->
     if (response.status!="connected")
-      $('#fblogin').show()
-      $('#fblogout').hide()
+      window.location = '/login'
     else
       window.fbAccessToken=response.authResponse.accessToken
       FB.api '/me', (response2) ->
         $('#goToFB').click ->
           window.location.href="http://facebook.com/#{response2.username}/photos"
       FB.api '/me/albums', getAlbums
-      $('#loginOverlay').hide()
       $('#fblogout').show()
-      $('#fblogin').hide()
 
   FB.Event.subscribe 'auth.statusChange', (response) ->
     console.log("status changes")
     if (response.status!="connected")
-      $('#fblogin').show()
-      $('#fblogout').hide()
+      windown.location='/login'
     else
       $('#fblogout').show()
-      $('#fblogin').hide()
       
 temp = (d) ->
   js = ""

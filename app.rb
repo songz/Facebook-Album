@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'stripe'
 require 'mail'
+require 'httparty'
 
 get '/' do
   erb :main
@@ -34,28 +35,10 @@ post '/charge' do
 end
 
 post '/' do
-  fname = params[:fname]
-  lname = params[:lname]
-  userEmail = params[:userEmail]
+  name = params[:name]
+  userEmail= params[:userEmail]
+  comment= params[:comment]
 
-
-  Mail.defaults do
-  delivery_method :smtp, { :address   => "smtp.sendgrid.net",
-                           :port      => 587,
-                           :domain    => "dragpic.herokuapp.com",
-                           :user_name => "hbkm",
-                           :password  => "abc123",
-                           :authentication => 'plain',
-                           :enable_starttls_auto => true }
-  end
-  
-  mail = Mail.deliver do
-   from     'signup@test.'
-   to       'moon1991@gmail.com'
-   subject  'Dragpic'
-   text_part do
-    body    fname+' '+lname+' '+userEmail 
-   end
-  end  
+  HTTParty.post("http://evafong.herokuapp.com/users/", :query => {:'user[name]' => name, :'user[email]'=> userEmail, :'user[comment]' => comment})
   redirect '/'
 end
