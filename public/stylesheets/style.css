@@ -2,19 +2,103 @@
   display:none;
 }
 
-#socialButtons{
+#getEmails{
+  height:30px;
+  position:absolute;
+  top: 0;
+  width: 100%;
+  background-color:#303030;
+  text-align:center;
+  font: normal 14px "Times New Roman", Arial, Helvetica, Geneva, sans-serif;
+  color: white;
+  line-height:30px;
+  cursor:pointer;
+}
+
+#emailForm{
+  background-color:#eee;
+  position:absolute;
+  width: 250px;
+  top: 30px;
+  height: 190px;
+  box-shadow: 0 0 5px #888;
+  border-radius: 5px;
+  z-index: 4;
+}
+
+#comment{
+  height: 50px;
+}
+
+#emailBox{
+  width: 220px;
+  display: block;
+  margin: 5px auto;
+}
+
+
+#submitEmail{
+  top: 0;
+  height: 20px;
+}
+
+#socialContainer{
   position:fixed;
   top:300px;
+  width: 420px;
+  height: 80px;
   text-align:center;
-  margin:auto;
   z-index:5;
+  left: -360px;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
 }
-#donateButton{
+
+#socialContainer:hover{
+	left: -25px;
+}
+
+#connect{
+  width: 380px;
+  height: 80px;
+  background-color: teal;
+  float: left;
+}
+
+#arrow-left{
+  width: 0; 
+  height: 0;
+  float: left; 
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent; 
+  border-left:40px solid teal;
+}
+
+#socialBox{
+  width: 340px;
+  height: 60px;
+  background-color: teal;
+  display: block;
+  margin-top: 10px;
+  float: left;
+  margin-right: 10px;
+}
+
+.link{
   cursor:pointer;
-  padding:20px;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  height: 60px;
+  width: 80px;
+  text-align: center;
+  float: right;
 }
 
-
+#donateButton{
+  height: 60px;
+}
 #albumFiles{
   color:#999;
   font-family:'cabin';
@@ -24,6 +108,7 @@
   font-size: 25px;
   margin: 20px;
 }
+
 #albumFilesContainer{
   width: 400px;
   text-align:left;
@@ -95,6 +180,8 @@ textArea.newAlbumInput{
   right:0;
   left:0;
   z-index:5;
+  overflow:auto;
+  padding-bottom:50px;
 }
 
 .closeOverlay{
@@ -187,7 +274,7 @@ textArea.newAlbumInput{
 }
 
 .authButton{
-  top:20px;
+  top:40px;
   right:20px;
   position:absolute;
   cursor:pointer;

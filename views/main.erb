@@ -2,23 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>DragPic</title>
     <link rel="stylesheet" href="stylesheets/login.css" />
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
     <!-- // <script src="/javascripts/bootstrap.min.js" type="text/javascript"></script> -->
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-	 <script type="text/javascript">
-     Stripe.setPublishableKey('pk_wEshmX7mEF5LDcUyjE4NwoKtr0UCd');
-   </script>
-   <style type="text/css"></style>
   </head>
   <body>
-    <div id="socialButtons">
-      <div id="donateButton" class="">Donate</div>
+
+    <div id="getEmails" >
+      We're working on step by step tutorials on how to build this app. Leave your email to be notified when it's ready. Click here. <i id="caret" style="font-size: 14px;">&#9660;</i> 
+    </div>
+
+    <div id="emailForm"> 
+      <div id="emailBox">
+        <form method="POST" action="/">
+          <input id="name" type="text" name="name" placeholder="Name"/><br/>
+          <input id="email" type="email" name="userEmail" placeholder="Email"/><br/>
+          <textarea class="comment" rows=3" name="comment" ></textarea>
+          <input type="submit" class="btn btn-primary" id="emailButton"/>
+        </form>
+      </div> 
+    </div>
+
+    <div id="socialContainer">
+      <div id="connect">
+        <div id="socialBox">
+
+          <div class="link">
+              <img id="donateButton" src="images/speech.png" alt="" class="speech" />
+          </div>
+          <div class="link">
+            <div class="g-plusone" data-size="tall" data-annotation="bubble" ></div>
+          </div>
+          <script type="text/javascript">
+            (function() {
+             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+             po.src = 'https://apis.google.com/js/plusone.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+             })();
+          </script>
+
+          <div class="link">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="Faster way to upload pictures to Facebook www.dragpic.com by @FongChinxx @eeevahhh " data-related="jasoncosta" data-lang="en" data-size="small" data-count="vertical">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+          <div class="link">
+            <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdragpic.herokuapp.com&amp;send=false&amp;layout=box_count&amp;width=48&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90&amp;appId=365096930222643" scrolling="no" frameborder="0" style="width: 48px; height: 61px;" allowTransparency="true"></iframe>
+          </div> 
+        </div>
+      </div>
+      <div id="arrow-left"></div>
     </div>
 
     <div class="authButton">
@@ -78,19 +118,19 @@
       <form action="/charge" method="POST" id="payment-form">
         <div class="form-row">
           <label>Name</label>
-          <input type="text" size="10" autocomplete="off" class="name"/>
+          <input type="text" size="10" class="name"/>
         </div>
          <div class="form-row">
           <label>Email</label>
-          <input type="email" size="30" id="em" autocomplete="off" name="usremail" class="email"/>
+          <input type="email" size="30" id="em" name="usremail" class="email"/>
         </div>
         <div class="form-row">
           <label>Card Number</label>
-          <input type="text" pattern="[0-9.]+" name="quantity" size="18" maxlength="20" autocomplete="on" class="card-number" id="edit1"/>
+          <input type="text" pattern="[0-9.]+" name="quantity" size="18" maxlength="20" class="card-number integer"/>
         </div>
         <div class="form-row">
           <label>CVC</label>
-          <input type="text" size="4" maxlength="4" autocomplete="off" class="card-cvc" id="edit2"/>
+          <input type="text" size="4" maxlength="4" class="card-cvc integer"/>
         </div>
         <div class="form-row">
           <label>Expiration (MM/YYYY)</label>
@@ -110,77 +150,18 @@
             <option value="12">December</option>
           </select>
           <span class="divide"> / </span>
-          <input type="number" class="card-expiry-year" id="edit4" size="5"/>
+          <input type="text" size="4" class="card-expiry-year integer" size="4" />
         </div>
         <div class="form-row">
-          <label>Amount of Donation($)</label>
-          <input type="number" min="1" size="4" autocomplete="on" name="Amount" class="donamount" id="edit3"/>
+          <label>Amount of Donation ($)</label>
+          <input type="number" min="1" size="4" autocomplete="on" name="Amount" class="donamount integer" />
         </div>
         <button type="submit" class="btn btn-primary submit-button">Submit Payment</button>
       </form>
     </div>
 
-    <div id="loginOverlay" class="overlay">
-      <div id="loginOverlayInside">
-        <h1>Drag Pic 
-          <img src="/images/logo.png" alt="" />
-        </h1>
-        <h3>A simple way to upload your photos to facebook.</h3>
-        <p>Just Login Here.</p>
-        <img id="fbloginButton" src="https://dl.dropbox.com/u/20617985/fbLogInButton.png" alt="" />
-        <p>And Get Started.</p>
-      </div>
-      <div id="aboutus"></div>
-    </div>
-
     <div id="fb-root"></div>
     <script src="javascripts/app.js"></script>
-    <script type="text/javascript">
-      function validateNumber(event) {
-        var key = window.event ? event.keyCode : event.which;
-        if (event.keyCode == 8 || event.keyCode == 46
-            || event.keyCode == 37 || event.keyCode == 39) {
-          return true;
-        }
-        else if ( key < 48 || key > 57 ) {
-          return false;
-        }
-        else return true;
-      }; 
-      $(document).ready(function(){
-          $('[id^=edit]').keypress(validateNumber);
-      });
-    </script>
-    <script type="text/javascript">
-       $("#payment-form").submit(function(event) {
-          $('.submit-button').attr("disabled", "disabled");
-            var ee = $('#em').val();
-            $.post('/charge', {email:ee}, function(a){})
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
-          return false;
-        });
-      function stripeResponseHandler(status, response) {
-        if (response.error) {
-          // show the errors on the form
-          $(".payment-errors").text(response.error.message);
-          $(".submit-button").removeAttr("disabled");
-        } 
-        else {
-          var form$ = $("#payment-form");
-          // token contains id, last4, and card type
-          var token = response['id'];
-          // insert the token into the form so it gets submitted to the server
-          console.log(status)
-          form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-          // and submit
-          form$.get(0).submit();
-        }
-      } 
-    </script>
+    <script src="javascripts/stripe.js"></script>
   </body>
 </html>
