@@ -180,6 +180,8 @@ textArea.newAlbumInput{
   right:0;
   left:0;
   z-index:5;
+  overflow:auto;
+  padding-bottom:50px;
 }
 
 .closeOverlay{
