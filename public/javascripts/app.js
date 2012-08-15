@@ -16,9 +16,9 @@
       left: newLeft
     });
     if ($('#emailForm').is(":visible")) {
-      return $('#emailForm').slideUp('slow');
+      return $('#emailForm').slideUp('fast');
     } else {
-      return $('#emailForm').slideDown('slow', function() {
+      return $('#emailForm').slideDown('fast', function() {
         return $('#name').focus();
       });
     }
@@ -62,7 +62,6 @@
       curr = evt.loaded;
       total = evt.totalSize;
       upload = (curr / total) * 100;
-      console.log(upload);
       console.log(this.fileId);
       if (upload === 100) {
         $("#row" + this.fileId).remove();
@@ -320,7 +319,6 @@
       }
     });
     return FB.Event.subscribe('auth.statusChange', function(response) {
-      console.log("status changes");
       if (response.status !== "connected") {
         return windown.location = '/login';
       } else {

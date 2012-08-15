@@ -18,43 +18,21 @@ post '/charge' do
   Stripe.api_key = "u5qJzzpT8rOeXgUED3bc0iNYEAbYjwuU"
   # get the credit card details submitted by the form
   token = params[:stripeToken]
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
   # create a Customer
   customer = Stripe::Customer.create(
     :card => token,
     :plan => "customer",
     :email => params[:email] 
   )
-
-
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-
   # create the charge on Stripe's servers - this will charge the user's card
-
   charge = Stripe::Charge.create(
   :amount => params[:Amount].to_i*100, # amount in cents, again
   :currency => "usd",
   :customer => customer.id,
   :description => params[:email]
   )
+  p params[:email]
 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
   redirect '/'
 end
 
