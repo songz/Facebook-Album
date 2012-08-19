@@ -1,4 +1,4 @@
-Stripe.setPublishableKey('pk_wEshmX7mEF5LDcUyjE4NwoKtr0UCd')
+Stripe.setPublishableKey('pk_iCbmZWvEwfXLnuOACl9YgSibT7R20')
 
 validateNumber = (event) ->
   if window.event
