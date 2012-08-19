@@ -3,6 +3,7 @@ require 'sinatra'
 require 'stripe'
 require 'mail'
 require 'httparty'
+@stripeKey=ENV['STRIPE_KEY']
 
 get '/login' do
   erb :login
@@ -13,7 +14,7 @@ get '/' do
 end
 
 post '/charge' do
-  Stripe.api_key = "NwvOOyaWcuu4HiTsqrgajJSSnpnzJzd7"
+  Stripe.api_key = @stripeKey 
   token = params[:stripeToken]
   # create a Customer
   customer = Stripe::Customer.create(
