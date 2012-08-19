@@ -13,12 +13,11 @@ get '/' do
 end
 
 post '/charge' do
-  Stripe.api_key = "pk_iCbmZWvEwfXLnuOACl9YgSibT7R20"
+  Stripe.api_key = "NwvOOyaWcuu4HiTsqrgajJSSnpnzJzd7"
   token = params[:stripeToken]
   # create a Customer
   customer = Stripe::Customer.create(
     :card => token,
-    :plan => "customer",
     :email => params[:email] 
   )
   # create the charge on Stripe's servers - this will charge the user's card
