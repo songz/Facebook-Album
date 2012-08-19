@@ -13,7 +13,7 @@ get '/' do
 end
 
 post '/charge' do
-  Stripe.api_key = "NwvOOyaWcuu4HiTsqrgajJSSnpnzJzd7"
+  Stripe.api_key = "pk_iCbmZWvEwfXLnuOACl9YgSibT7R20"
   token = params[:stripeToken]
   # create a Customer
   customer = Stripe::Customer.create(
