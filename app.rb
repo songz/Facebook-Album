@@ -13,33 +13,14 @@ get '/' do
 end
 
 post '/charge' do
-   # set your secret key: remember to change this to your live secret key in production
-  # see your keys here https://manage.stripe.com/account
-  Stripe.api_key = "u5qJzzpT8rOeXgUED3bc0iNYEAbYjwuU"
-  # get the credit card details submitted by the form
+  Stripe.api_key = "NwvOOyaWcuu4HiTsqrgajJSSnpnzJzd7"
   token = params[:stripeToken]
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  p "==========1=============" 
-  # create a Customer
+
   customer = Stripe::Customer.create(
     :card => token,
     :plan => "customer",
     :email => params[:email] 
   )
-
-
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-  p "==========2=============" 
-
   # create the charge on Stripe's servers - this will charge the user's card
 
   charge = Stripe::Charge.create(
@@ -49,12 +30,6 @@ post '/charge' do
   :description => params[:email]
   )
 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
-  p "==========4=============" 
   redirect '/'
 end
 
