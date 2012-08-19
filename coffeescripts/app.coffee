@@ -6,9 +6,9 @@ $('#getEmails').click ->
   newLeft=$('#caret').position().left-150+'px'
   $('#emailForm').css({left:newLeft})
   if $('#emailForm').is(":visible")
-    $('#emailForm').slideUp 'slow'
+    $('#emailForm').slideUp 'fast'
   else
-    $('#emailForm').slideDown 'slow' , ->
+    $('#emailForm').slideDown 'fast' , ->
       $('#name').focus()
 
 window.onresize = ->
@@ -37,7 +37,6 @@ class PictureFile
     curr = evt.loaded
     total = evt.totalSize
     upload = (curr/total)*100
-    console.log upload
     console.log @fileId
     if upload == 100
       $("#row#{@fileId}").remove()
@@ -79,7 +78,6 @@ uploadPics = (files, albumId) ->
     url = "https://graph.facebook.com/"+albumId+"/photos"
   else
     url = "https://graph.facebook.com/"+$('.selectedAlbum').attr('id')+"/photos"
-    #url = "/sendImage"
   i = 0
   for file in files
     fileId = 'file'+i
@@ -218,7 +216,6 @@ window.fbAsyncInit = ->
       $('#fblogout').show()
 
   FB.Event.subscribe 'auth.statusChange', (response) ->
-    console.log("status changes")
     if (response.status!="connected")
       windown.location='/login'
     else
