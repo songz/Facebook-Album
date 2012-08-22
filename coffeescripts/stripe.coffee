@@ -23,7 +23,7 @@ $("#payment-form").submit (event) ->
     cvc: $('.card-cvc').val(),
     exp_month: $('.card-expiry-month').val(),
     exp_year: $('.card-expiry-year').val(),
-    email: $('#email').val()
+    email: $('#em').val()
   , stripeResponseHandler
   return false
 
