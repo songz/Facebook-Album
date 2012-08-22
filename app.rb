@@ -5,6 +5,7 @@ require 'mail'
 require 'httparty'
 
 STRIPE_KEY=ENV['STRIPE_KEY']
+@FB_KEY = ENV['FB_KEY']
 
 get '/login' do
   erb :login
