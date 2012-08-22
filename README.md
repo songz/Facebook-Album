@@ -1,7 +1,7 @@
 # DragPic
 
 Visit the site at 
-[http://opentokpicker.com](http://opentokpicker.com)
+[http://dragpic.heroku.com](http://dragpic.heroku.com)
 
 DragPic helps users upload pictures to desired Facebook pictures faster. It also allows users to create a new album and upload pictures at the same time.
 
